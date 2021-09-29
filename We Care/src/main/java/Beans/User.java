@@ -2,7 +2,7 @@ package Beans;
 
 public class User {
 
-	String user_id,name,country,state,city,address,area,phone_no;
+	String user_id,name,country,state,city,address,area,phone_no,user_type,org_id,rowstate;
 
 	public String getUser_id() {
 		return user_id;
@@ -66,6 +66,30 @@ public class User {
 
 	public void setPhone_no(String phone_no) {
 		this.phone_no = phone_no;
+	}
+
+	public String getUser_type() {
+		return user_type;
+	}
+
+	public void setUser_type(String user_type) {
+		this.user_type = user_type;
+	}
+
+	public String getOrg_id() {
+		return org_id;
+	}
+
+	public String getRowstate() {
+		return rowstate;
+	}
+
+	public void setOrg_id(String org_id) {
+		this.org_id = org_id;
+	}
+
+	public void setRowstate(String rowstate) {
+		this.rowstate = rowstate;
 	}
 	
 	
