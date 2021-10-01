@@ -3,7 +3,7 @@ package Beans;
 public class Organization {
 
 	
-	int org_id,user_id,rowstate;
+	int org_id,user_id,rowstate,org_name;
 
 	public int getOrg_id() {
 		return org_id;
@@ -27,5 +27,13 @@ public class Organization {
 
 	public void setRowstate(int rowstate) {
 		this.rowstate = rowstate;
+	}
+
+	public int getOrg_name() {
+		return org_name;
+	}
+
+	public void setOrg_name(int org_name) {
+		this.org_name = org_name;
 	}
 }

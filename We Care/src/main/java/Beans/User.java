@@ -3,6 +3,7 @@ package Beans;
 public class User {
 
 	String user_id,name,country,state,city,address,area,phone_no,user_type,org_id,rowstate;
+	String user_name,mobile_no;
 
 	public String getUser_id() {
 		return user_id;
@@ -90,6 +91,22 @@ public class User {
 
 	public void setRowstate(String rowstate) {
 		this.rowstate = rowstate;
+	}
+
+	public String getUser_name() {
+		return user_name;
+	}
+
+	public String getMobile_no() {
+		return mobile_no;
+	}
+
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
+
+	public void setMobile_no(String mobile_no) {
+		this.mobile_no = mobile_no;
 	}
 	
 	
