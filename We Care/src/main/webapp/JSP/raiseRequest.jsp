@@ -48,14 +48,51 @@
     </div>
   </div>
 </nav>
-
-<table class="table table-striped" style="margin-top: 110px;">
-<tbody>
-
-
-
-
-</tbody>
+<h1>Raise Requests</h1>
+<table class="table table-striped" style="margin-top: 50px;border:1px">
+<marquee>We expect that your request is genuine</marquee>
+  <tr>   
+  	<td> Request Description  </td>
+  	<td><input type="text" id="request_description"> </td>
+  </tr>
+    <tr>   
+  	<td> Country  </td>
+  	<td><input type="text" id="country"> </td>
+  </tr>
+    <tr>   
+  	<td> State </td>
+  	<td><input type="text" id="state"> </td>
+  </tr>
+    <tr>   
+  	<td> City   </td>
+  	<td><input type="text" id="city"> </td>
+  </tr>
+     <tr>   
+  	<td> Area   </td>
+  	<td><input type="text" id="area"> </td>
+  </tr>
+   <tr>   
+  	<td> NGO/Organizations   </td>
+  	<td><input type="text" id="area"> </td>
+  </tr>
+     <tr>   
+  	<td> Upload Images   </td>
+  	<td><input type="file" id="upload_images"> </td>
+  </tr>
 </table>
+<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top" style="position: fixed;left: 0;bottom: 0;width: 100%;">
+    <div class="col-md-4 d-flex align-items-center">
+      <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+        <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+      </a>
+      <span class="text-muted">© Bits Pilani All rights reserved</span>
+    </div>
+
+    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+      <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg></a></li>
+      <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg></a></li>
+      <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
+    </ul>
+  </footer>
 </body>
 </html>
