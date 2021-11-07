@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC 
+"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN" 
+"http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+
+	<form-beans>
+	   <form-bean name="User" type="Beans.User"/>
+		 <form-bean name="Organization" type="Beans.Organization"/>
+	</form-beans>
+	
+
+	<action-mappings>
+	   <action path="/MainAction" type="action.MainAction" name="User"> 
+	   		<forward name="success" path="/JSP/Dashboard.jsp"/> 
+	   		<forward name="raiseRequest" path="/JSP/raiseRequest.jsp"/> 
+	   		<forward name="approveRequest" path="/JSP/approveRequest.jsp"/> 
+	   		<forward name="viewStatus" path="/JSP/viewStatus.jsp"/> 
+	   </action>
+		
+		
+	</action-mappings>
+
+</struts-config>

@@ -1,6 +1,8 @@
 package Beans;
 
-public class Organization {
+import org.apache.struts.action.ActionForm;
+
+public class Organization extends ActionForm{
 
 	
 	int org_id,user_id,rowstate,org_name;

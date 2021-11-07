@@ -1,6 +1,8 @@
 package Beans;
 
-public class User {
+import org.apache.struts.action.ActionForm;
+
+public class User extends ActionForm {
 
 	String user_id,name,country,state,city,address,area,phone_no,user_type,org_id,rowstate;
 	String user_name,mobile_no;
