@@ -35,5 +35,10 @@
 	<classpathentry kind="lib" path="C:/Users/Yeeshaj/Downloads/struts-1.3.10-lib/struts-1.3.10/lib/struts-taglib-1.3.10.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Yeeshaj/Downloads/struts-1.3.10-lib/struts-1.3.10/lib/struts-tiles-1.3.10.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Yeeshaj/Downloads/javax.servlet.jar/javax.servlet.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Yeeshaj/Downloads/mysql-connector-java-8.0.11.jar/mysql-connector-java-8.0.11.jar"/>
+	<classpathentry kind="lib" path="D:/SQL JARS/mysql-connector-java-8.0.26.jar"/>
+	<classpathentry kind="lib" path="D:/SQL JARS/protobuf-java-3.11.4.jar"/>
+	<classpathentry kind="lib" path="D:/SQL JARS/json-lib-2.4.jar"/>
+	<classpathentry kind="lib" path="D:/SQL JARS/java-json.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

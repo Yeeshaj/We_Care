@@ -6,19 +6,22 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib uri="http://struts.apache.org/tags-nested" prefix="nested" %>
+
 <!DOCTYPE html>
 <html>
 <head>
  <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
- 
+
 <meta charset="ISO-8859-1">
 <title>Raise Request</title>
+<script type="text/javascript" src="JS/Functionality.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 </head>
 <body>
+ <form name="myForm" > 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">We-Care</a>
+    <a class="navbar-brand" href="/We_Care/MainAction.do?subaction=dashboard">We-Care</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -26,27 +29,16 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
       
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="raiseRequest.jsp">Raise Request</a>
+          <a class="nav-link active" aria-current="page" href="/We_Care/MainAction.do?subaction=raiseRequest">Raise Request</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="approveRequest.jsp">Approve Request</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="viewStatus.jsp">View Status</a>
-        </li>
-       <!--  <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li> -->
+          <a class="nav-link" href="/We_Care/MainAction.do?subaction=viewRequest">View Status</a>
+        
         <li class="nav-item">
-        <!--   <a class="nav-link disabled">Disabled</a> -->
+          <a class="nav-link" href="organization.jsp">Join Org</a>
         </li>
       </ul>
       <form class="d-flex">
@@ -65,15 +57,28 @@
   </tr>
     <tr>   
   	<td> Country  </td>
-  	<td><input type="text" id="country"> </td>
+  	<td>
+  			<html:select styleId="country"  name="User" property="countryList" onchange="populateState(this.value);" >
+                <html:option value="0">Select Country</html:option>
+                <html:optionsCollection name="User" property="countryList" label="countryName" value="countryId" />
+            </html:select>
+  	</td>
   </tr>
     <tr>   
   	<td> State </td>
-  	<td><input type="text" id="state"> </td>
+  	<td>
+  	<select id="state" onchange="populateCity(this.value);">
+  	<option value="0">Select State</option>
+  	</select>
+  	 </td>
   </tr>
     <tr>   
   	<td> City   </td>
-  	<td><input type="text" id="city"> </td>
+  		<td>
+  	<select id="city" onchange="populateNGO();">
+  	<option value="0">Select City</option>
+  	</select>
+  	</td>
   </tr>
      <tr>   
   	<td> Area   </td>
@@ -81,11 +86,19 @@
   </tr>
    <tr>   
   	<td> NGO/Organizations   </td>
-  	<td><input type="text" id="area"> </td>
+  	<td>
+  	<select id="org" >
+  	<option value="0">Select Organization</option>
+  	</select>
+  	 </td>
   </tr>
      <tr>   
   	<td> Upload Images   </td>
-  	<td><input type="file" id="upload_images"> </td>
+  	<td><input type="file" id="upload_images" enctype="multipart/form-data"> </td>
+  </tr>
+  <tr>   
+  	<td colspan='2'> <center><button type="submit" onclick='raiseRequest()'>Submit</input> </center>  </td>
+  	
   </tr>
 </table>
 <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top" style="position: fixed;left: 0;bottom: 0;width: 100%;">
@@ -102,5 +115,6 @@
       <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
     </ul>
   </footer>
+ </form>
 </body>
 </html>

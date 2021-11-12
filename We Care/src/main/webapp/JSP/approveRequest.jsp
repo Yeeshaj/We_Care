@@ -16,7 +16,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">We-Care</a>
+    <a class="navbar-brand" href="/We_Care/MainAction.do?subaction=dashboard">We-Care</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -24,13 +24,16 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
       
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="raiseRequest.jsp">Raise Request</a>
+          <a class="nav-link active" aria-current="page" href="/We_Care/MainAction.do?subaction=raiseRequest">Raise Request</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="approveRequest.jsp">Approve Request</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="viewStatus.jsp">View Status</a>
+          <a class="nav-link" href="/We_Care/MainAction.do?subaction=viewRequest">View Status</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="organization.jsp">Join Org</a>
         </li>
        <!--  <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -54,7 +57,32 @@
     </div>
   </div>
 </nav>
+<table class="table table-striped" style="margin-top: 110px;">
+  <thead>
+    <tr>
+      <th scope="col">Request No</th>
+      <th scope="col">Description</th>
+      <th scope="col">Sent by Organization/NGO </th>
+       <th scope="col">Raised By </th>
+       <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <%-- <logic:iterate id="viewStatusList" name="User" type="Beans.ViewStatus" property="viewStatusList"> --%>
+  <tr>
+  <%-- <td><bean:write  name="viewStatusList" property="transaction_id"/>  </td>
+  <td><bean:write name="viewStatusList" property="description"/></td>
+  <td><bean:write  name="viewStatusList" property="NGO"/></td>
+  <td><bean:write  name="viewStatusList" property="status"/></td> --%>
+ 
+  </tr>
+  
+  
+ <%--  </logic:iterate> --%>
 
+  <tbody>
+   
+  </tbody>
+</table>
 <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top" style="position: fixed;left: 0;bottom: 0;width: 100%;">
     <div class="col-md-4 d-flex align-items-center">
       <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">

@@ -6,17 +6,20 @@
 <struts-config>
 
 	<form-beans>
-	   <form-bean name="User" type="Beans.User"/>
+	   	<form-bean name="User" type="Beans.User"/>
 		 <form-bean name="Organization" type="Beans.Organization"/>
+		 	<form-bean name="Country" type="Beans.Country"/>
 	</form-beans>
 	
 
 	<action-mappings>
-	   <action path="/MainAction" type="action.MainAction" name="User"> 
-	   		<forward name="success" path="/JSP/Dashboard.jsp"/> 
-	   		<forward name="raiseRequest" path="/JSP/raiseRequest.jsp"/> 
-	   		<forward name="approveRequest" path="/JSP/approveRequest.jsp"/> 
-	   		<forward name="viewStatus" path="/JSP/viewStatus.jsp"/> 
+	   <action path="/MainAction" type="action.MainAction" name="User" scope="session"> 
+	   		<forward name="login" path="/JSP/Dashboard.jsp" redirect="true"/> 
+	   		<forward name="success" path="/JSP/Dashboard.jsp" redirect="true"/> 
+	   		<forward name="raiseRequest" path="/JSP/raiseRequest.jsp" /> 
+	   		<forward name="approveRequest" path="/JSP/approveRequest.jsp" redirect="true"/> 
+	   		<forward name="viewStatus" path="/JSP/viewStatus.jsp" redirect="true"/> 
+	   		<forward name="orgList" path="/JSP/organization.jsp" redirect="true"/> 
 	   </action>
 		
 		

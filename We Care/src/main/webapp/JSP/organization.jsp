@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-   
+    
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>View Status</title>
+<title>Organization</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 </head>
 <body>
@@ -33,7 +33,7 @@
           <a class="nav-link" href="/We_Care/MainAction.do?subaction=viewRequest">View Status</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/We_Care/MainAction.do?subaction=orgList">Join Org</a>
+          <a class="nav-link" href="organization.jsp">Join Org</a>
         </li>
        <!--  <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -60,23 +60,24 @@
 <table class="table table-striped" style="margin-top: 110px;">
   <thead>
     <tr>
-      <th scope="col">Request No</th>
-      <th scope="col">Description</th>
-      <th scope="col">Organization/User </th>
-      <th scope="col">status</th>
+      <th scope="col">Organization ID</th>
+      <th scope="col">Organization Name</th>
+      <th scope="col">Action </th>
+       
     </tr>
   </thead>
-  <logic:iterate id="viewStatusList" name="User" type="Beans.ViewStatus" property="viewStatusList">
+  <logic:iterate id="orgList" name="User" type="Beans.Organization" property="orgList"> 
   <tr>
-  <td><bean:write  name="viewStatusList" property="transaction_id"/>  </td>
-  <td><bean:write name="viewStatusList" property="description"/></td>
-  <td><bean:write  name="viewStatusList" property="NGO"/></td>
-  <td><bean:write  name="viewStatusList" property="status"/></td>
+ <td><bean:write  name="orgList" property="org_id"/>  </td>
+  <td><bean:write name="orgList" property="org_name"/></td>
+<td>
+<input type="button" onclick='joinOrg()' placeholder="Join">   
+</td>
  
   </tr>
   
   
-  </logic:iterate>
+   </logic:iterate> 
 
   <tbody>
    
