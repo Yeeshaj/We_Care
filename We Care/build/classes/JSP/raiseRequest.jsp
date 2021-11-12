@@ -38,7 +38,7 @@
           <a class="nav-link" href="/We_Care/MainAction.do?subaction=viewRequest">View Status</a>
         
         <li class="nav-item">
-          <a class="nav-link" href="organization.jsp">Join Org</a>
+          <a class="nav-link" href="/We_Care/MainAction.do?subaction=orgList">Join Org</a>
         </li>
       </ul>
       <form class="d-flex">

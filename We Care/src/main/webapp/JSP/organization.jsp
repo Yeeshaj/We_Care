@@ -33,7 +33,7 @@
           <a class="nav-link" href="/We_Care/MainAction.do?subaction=viewRequest">View Status</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="organization.jsp">Join Org</a>
+          <a class="nav-link" href="/We_Care/MainAction.do?subaction=orgList">Join Org</a>
         </li>
        <!--  <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -71,7 +71,7 @@
  <td><bean:write  name="orgList" property="org_id"/>  </td>
   <td><bean:write name="orgList" property="org_name"/></td>
 <td>
-<input type="button" onclick='joinOrg()' placeholder="Join">   
+<img src="/We_Care/Images/add.jpg"  alt="Join"  style="width: 30px;">
 </td>
  
   </tr>

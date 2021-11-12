@@ -120,7 +120,7 @@ public class MainAction  extends Action
 	if(status)
 	{
 		user.setMessage("Request Raised Successfully");
-		return mapping.findForward("success");
+		dashboard(mapping, form, request, response);
 	}
 	else
 	{
