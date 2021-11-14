@@ -11,9 +11,14 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Organization</title>
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="/We_Care/JS/Functionality.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 </head>
 <body>
+ <form name="myForm" > 
+<%-- <bean:define id="userId" property="user_id" name="User"></bean:define> --%>
+<%long userId=(long)session.getAttribute("id"); %>  
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="/We_Care/MainAction.do?subaction=dashboard">We-Care</a>
@@ -52,7 +57,7 @@
       </ul>
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <button class="btn btn-outline-success" type="submit" onclick="logout('<%=userId%>')">Log Out</button>
       </form>
     </div>
   </div>
@@ -71,7 +76,10 @@
  <td><bean:write  name="orgList" property="org_id"/>  </td>
   <td><bean:write name="orgList" property="org_name"/></td>
 <td>
-<img src="/We_Care/Images/add.jpg"  alt="Join"  style="width: 30px;">
+
+<a onclick="joinGroup('<%=userId%>')">
+<img src="/We_Care/Images/add.jpg"  alt="Join"  style="width: 30px;" >
+</a>
 </td>
  
   </tr>
@@ -97,5 +105,6 @@
       <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
     </ul>
   </footer>
+  </form>
 </body>
 </html>

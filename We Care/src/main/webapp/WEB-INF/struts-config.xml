@@ -20,6 +20,7 @@
 	   		<forward name="approveRequest" path="/JSP/approveRequest.jsp" redirect="true"/> 
 	   		<forward name="viewStatus" path="/JSP/viewStatus.jsp" redirect="true"/> 
 	   		<forward name="orgList" path="/JSP/organization.jsp" redirect="true"/> 
+	   		<forward name="logout" path="/HTML/Login.html" redirect="true"/> 
 	   </action>
 		
 		

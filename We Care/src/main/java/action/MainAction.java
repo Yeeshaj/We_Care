@@ -79,6 +79,10 @@ public class MainAction  extends Action
 		{
 			forward=orgList(mapping,form,request,response);
 		}
+		else if(subaction.equals("logout"))
+		{
+			forward=logout(mapping,form,request,response);
+		}
 	
 		if(forward!=null)
 
@@ -252,7 +256,8 @@ public class MainAction  extends Action
 			userid=rcm.login(id, password);
 			if(userid!=0)
 			{
-				 session = request.getSession();
+				user.setUser_id(String.valueOf(userid));				
+				session = request.getSession();
 				session.setAttribute("id", userid);
 				
 			}
@@ -357,5 +362,29 @@ public class MainAction  extends Action
 			
 		}
 		return mapping.findForward("orgList");
+		}
+	
+	private ActionForward logout(ActionMapping mapping, ActionForm form, HttpServletRequest request,  HttpServletResponse response) {
+		
+		
+		
+		try
+		{
+			
+			session.removeAttribute("id");
+			session.invalidate();
+			
+			
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			
+		}
+		return mapping.findForward("logout");
 		}
 }

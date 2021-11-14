@@ -2,6 +2,16 @@
  * 
 Author: Yeeshaj Aarshin Srivastava
  */
+function joinGroup(userId)
+{
+	alert(userId);
+}
+function logout(userId)
+{
+	document.myForm.action = "/We_Care/MainAction.do?subaction=logout&id="+userId;
+		document.myForm.method="POST";
+		document.myForm.submit();
+}
 function  logins()
 {
 	
