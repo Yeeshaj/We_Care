@@ -83,7 +83,10 @@ public class MainAction  extends Action
 		{
 			forward=logout(mapping,form,request,response);
 		}
-	
+		else if(subaction.equals("joinOrg"))
+			forward=joinOrg(mapping, form, request, response);
+		else if(subaction.equals("exitGroup"))
+			forward=exitGroup(mapping, form, request, response);
 		if(forward!=null)
 
 			return forward;
@@ -347,8 +350,8 @@ public class MainAction  extends Action
 		{
 			
 			requestCM rcm=new requestCM();
-		
-			data=rcm.orgList();
+			String userId=user.getUser_id();
+			data=rcm.orgList(userId );
 			user.setOrgList(data);
 			
 			
@@ -365,16 +368,10 @@ public class MainAction  extends Action
 		}
 	
 	private ActionForward logout(ActionMapping mapping, ActionForm form, HttpServletRequest request,  HttpServletResponse response) {
-		
-		
-		
-		try
-		{
-			
+	try
+		{	
 			session.removeAttribute("id");
 			session.invalidate();
-			
-			
 			
 		}
 		catch(Exception e)
@@ -387,4 +384,42 @@ public class MainAction  extends Action
 		}
 		return mapping.findForward("logout");
 		}
+	private ActionForward joinOrg(ActionMapping mapping, ActionForm form, HttpServletRequest request,  HttpServletResponse response) {
+	try
+		{	
+			String userId=request.getParameter("id");
+			String orgId=request.getParameter("orgId");
+			requestCM rcm=new requestCM();
+			rcm.joinOrg(userId,orgId);
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			
+		}
+		return orgList(mapping, form, request, response);
+		}
+	private ActionForward exitGroup(ActionMapping mapping, ActionForm form, HttpServletRequest request,  HttpServletResponse response) {
+		try
+			{	
+				String userId=request.getParameter("id");
+				String orgId=request.getParameter("orgId");
+				requestCM rcm=new requestCM();
+				rcm.exitGroup(userId,orgId);
+				
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			finally
+			{
+				
+			}
+			return orgList(mapping, form, request, response);
+			}
 }

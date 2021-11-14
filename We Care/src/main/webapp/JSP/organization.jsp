@@ -73,13 +73,22 @@
   </thead>
   <logic:iterate id="orgList" name="User" type="Beans.Organization" property="orgList"> 
   <tr>
- <td><bean:write  name="orgList" property="org_id"/>  </td>
+  
+ <td><bean:write  name="orgList" property="org_id" />  </td>
   <td><bean:write name="orgList" property="org_name"/></td>
 <td>
-
-<a onclick="joinGroup('<%=userId%>')">
+  <bean name="orgList" property="status"/>
+<%if(orgList.getStatus().equals("absent"))
+	{%>
+<a onclick="joinGroup('<%=userId%>','<%=orgList.getOrg_id()%>')">
 <img src="/We_Care/Images/add.jpg"  alt="Join"  style="width: 30px;" >
 </a>
+<%} else
+	{%>
+<a onclick="exitGroup('<%=userId%>','<%=orgList.getOrg_id()%>')">
+<img src="/We_Care/Images/exit.png"  alt="Exit"  style="width: 30px;" >
+</a>	
+	<%} %>
 </td>
  
   </tr>

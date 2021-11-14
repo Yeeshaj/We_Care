@@ -2,9 +2,18 @@
  * 
 Author: Yeeshaj Aarshin Srivastava
  */
-function joinGroup(userId)
+function joinGroup(userId,orgId)
 {
-	alert(userId);
+	document.myForm.action = "/We_Care/MainAction.do?subaction=joinOrg&id="+userId+"&orgId="+orgId;
+		document.myForm.method="POST";
+		document.myForm.submit();
+}
+
+function exitGroup(userId,orgId)
+{
+	document.myForm.action = "/We_Care/MainAction.do?subaction=exitGroup&id="+userId+"&orgId="+orgId;
+		document.myForm.method="POST";
+		document.myForm.submit();
 }
 function logout(userId)
 {

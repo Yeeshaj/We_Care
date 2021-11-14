@@ -458,17 +458,21 @@ public class requestCM {
 		}
 		return data;
 	}
-	public ArrayList<Organization> orgList() throws SQLException
+	public ArrayList<Organization> orgList(String userId) throws SQLException
 	{
 		
 		ArrayList<Organization> data=new ArrayList<Organization>();
 		java.sql.PreparedStatement ps=null;
 		java.sql.ResultSet rs=null;
+		ArrayList<String > orgLists=null;
+		
 		try
 		{
+			
+			orgLists=user_org_list(userId);
 			db=new DbManager();
 			con=db.createConnection();
-			//NO of users
+			//NO fo users
 			StringBuffer str=new StringBuffer();
 			str.append("SELECT *  FROM TABLES.ORGANIZATION ");
 			ps= con.prepareStatement(str.toString());
@@ -478,7 +482,130 @@ public class requestCM {
 			Organization org= new Organization();
 			org.setOrg_id(rs.getString("org_id"));
 			org.setOrg_name(rs.getString("org_name"));
+			if(orgLists.contains(rs.getString("org_id")))
+				org.setStatus("present");
+			else
+				org.setStatus("absent");
 			data.add(org);
+			}
+			
+			
+			
+			
+	}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			if(ps!=null)
+				ps.close();
+			if(rs!=null)
+				rs.close();
+			if(con!=null)
+				db.closeConnection();
+		}
+		return data;
+	}
+	public boolean joinOrg(String userId,String orgId) throws SQLException
+	{
+		
+		ArrayList<Organization> data=new ArrayList<Organization>();
+		java.sql.PreparedStatement ps=null;
+		java.sql.ResultSet rs=null;
+		
+		try
+		{
+		
+			db=new DbManager();
+			con=db.createConnection();
+			//NO of users
+			StringBuffer str=new StringBuffer();
+			str.append("INSERT into TABLES.org_user_table values(?,?,?) ");
+			ps= con.prepareStatement(str.toString());
+			ps.setLong(1, getMaxValue("org_user_table")+1);
+			ps.setLong(2, Long.parseLong(userId));
+			ps.setLong(3,Long.parseLong(orgId));
+			ps.execute();
+			
+			
+			
+			
+			
+	}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			if(ps!=null)
+				ps.close();
+			if(rs!=null)
+				rs.close();
+			if(con!=null)
+				db.closeConnection();
+		}
+		return true;
+	}
+	public boolean exitGroup(String userId,String orgId) throws SQLException
+	{
+		
+		ArrayList<Organization> data=new ArrayList<Organization>();
+		java.sql.PreparedStatement ps=null;
+		java.sql.ResultSet rs=null;
+		
+		try
+		{
+		
+			db=new DbManager();
+			con=db.createConnection();
+			//NO of users
+			StringBuffer str=new StringBuffer();
+			str.append("delete from TABLES.org_user_table where user_id= "+userId+" and org_id="+orgId);
+			ps= con.prepareStatement(str.toString());
+			
+			ps.execute();
+			
+			
+			
+			
+			
+	}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			if(ps!=null)
+				ps.close();
+			if(rs!=null)
+				rs.close();
+			if(con!=null)
+				db.closeConnection();
+		}
+		return true;
+	}
+	public ArrayList<String> user_org_list(String userId) throws SQLException
+	{
+		
+		ArrayList<String> data=new ArrayList<String>();
+		java.sql.PreparedStatement ps=null;
+		java.sql.ResultSet rs=null;
+		try
+		{
+			db=new DbManager();
+			con=db.createConnection();
+			//NO of users
+			StringBuffer str=new StringBuffer();
+			str.append("SELECT *  FROM TABLES.org_user_table where user_id= "+userId);
+			ps= con.prepareStatement(str.toString());
+			rs=ps.executeQuery();
+			while(rs.next())
+			{
+			data.add(rs.getString("org_id"));
 			}
 			
 			

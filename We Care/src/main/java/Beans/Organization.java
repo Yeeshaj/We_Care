@@ -5,7 +5,7 @@ import org.apache.struts.action.ActionForm;
 public class Organization extends ActionForm{
 
 	
-	String org_id,user_id,rowstate,org_name;
+	String org_id,user_id,rowstate,org_name,status;
 
 	public String getOrg_id() {
 		return org_id;
@@ -37,5 +37,13 @@ public class Organization extends ActionForm{
 
 	public void setOrg_name(String org_name) {
 		this.org_name = org_name;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }
