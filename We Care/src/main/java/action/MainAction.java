@@ -14,10 +14,12 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.ForwardAction;
+import org.apache.struts.upload.FormFile;
 import org.apache.struts2.json.annotations.JSON;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import Beans.ApproveList;
 import Beans.Country;
 import Beans.Organization;
 import Beans.User;
@@ -111,6 +113,7 @@ public class MainAction  extends Action
 		String stateId=request.getParameter("stateId");
 		String ngo=request.getParameter("ngo");
 		String area=request.getParameter("area");
+		
 		/*
 		 * String photopath=request.getParameter("photo");
 		 * 
@@ -316,19 +319,11 @@ public class MainAction  extends Action
 		 
 		try
 		{
-			
+			String userId=user.getUser_id();
 			requestCM rcm=new requestCM();
-			JSONArray data=new JSONArray();
-			data=rcm.approveRequestList();
-			if(data!=null)
-			{
-				
-				user.setNo_of_users(String.valueOf(data.getInt(0)));
-				user.setNo_of_org(String.valueOf(data.getInt(1)));
-				user.setNo_of_request_raised(String.valueOf(data.getInt(2)));
-				user.setNo_of_requests_solved(String.valueOf(data.getInt(3)));
-			}
-			
+			 ArrayList<ApproveList> data=new  ArrayList<ApproveList>();
+			data=rcm.approveRequestList(userId);
+			user.setApproveList(data);
 			
 		}
 		catch(Exception e)
@@ -339,7 +334,7 @@ public class MainAction  extends Action
 		{
 			
 		}
-		return mapping.findForward(Constants.SUCCESS);
+		return mapping.findForward("approveRequest");
 		}
 	
 	private ActionForward orgList(ActionMapping mapping, ActionForm form, HttpServletRequest request,  HttpServletResponse response) {

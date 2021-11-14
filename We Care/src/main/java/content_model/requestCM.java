@@ -9,6 +9,7 @@ import Util.DbManager;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import Beans.ApproveList;
 import Beans.Organization;
 import Beans.ViewStatus;
 
@@ -419,9 +420,9 @@ public class requestCM {
 		}
 		return data;
 	}
-	public JSONArray approveRequestList() throws SQLException
+	public ArrayList<ApproveList> approveRequestList(String userId) throws SQLException
 	{
-	JSONArray data=new JSONArray();
+		 ArrayList<ApproveList> data=new  ArrayList<ApproveList>();
 		
 		java.sql.PreparedStatement ps=null;
 		java.sql.ResultSet rs=null;
@@ -431,12 +432,17 @@ public class requestCM {
 			con=db.createConnection();
 			//NO of users
 			StringBuffer str=new StringBuffer();
-			str.append("SELECT * as c FROM TABLES.USER_DETAILS ");
+			str.append("SELECT * FROM TABLES.TRANSACTION t JOIN TABLES.user_details u ON t.raised_by=u.id JOIN TABLES.ORGANIZATION o on t.ngo=o.org_id where  alloted_to="+userId);
 			ps= con.prepareStatement(str.toString());
 			rs=ps.executeQuery();
 			while(rs.next())
 			{
-			data.put(rs.getString("c"));
+			ApproveList ap=new ApproveList();
+			ap.setRequestNo(rs.getString("raised_by"));
+			ap.setDescription(rs.getString("description"));
+			ap.setRaiseBy(rs.getString("u.name"));
+			ap.setSentByOrg(rs.getString("o.org_name"));
+			data.add(ap);
 			}
 			
 			

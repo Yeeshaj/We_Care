@@ -68,17 +68,28 @@
        <th scope="col">Action</th>
     </tr>
   </thead>
-  <%-- <logic:iterate id="viewStatusList" name="User" type="Beans.ViewStatus" property="viewStatusList"> --%>
+   <logic:iterate id="approveList" name="User" type="Beans.ApproveList" property="approveList"> 
   <tr>
-  <%-- <td><bean:write  name="viewStatusList" property="transaction_id"/>  </td>
-  <td><bean:write name="viewStatusList" property="description"/></td>
-  <td><bean:write  name="viewStatusList" property="NGO"/></td>
-  <td><bean:write  name="viewStatusList" property="status"/></td> --%>
- 
+   <td><bean:write  name="approveList" property="requestNo"/>  </td>
+  <td><bean:write name="approveList" property="description"/></td>
+  <td><bean:write  name="approveList" property="sentByOrg"/></td>
+  <td><bean:write  name="approveList" property="raiseBy"/></td> 
+ <td>
+  
+
+<a onclick="rejectRequest('<%=userId%>')">
+<img src="/We_Care/Images/approve.png"  alt="Approve"  style="width: 30px;" >
+</a>
+
+<a onclick="acceptRequest('<%=userId%>')">
+<img src="/We_Care/Images/reject.jpg"  alt="Reject"  style="width: 30px;" >
+</a>	
+	<
+</td>
   </tr>
   
   
- <%--  </logic:iterate> --%>
+ </logic:iterate> 
 
   <tbody>
    

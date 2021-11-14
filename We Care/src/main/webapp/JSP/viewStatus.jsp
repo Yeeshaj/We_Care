@@ -65,6 +65,7 @@
       <th scope="col">Description</th>
       <th scope="col">Organization/User </th>
       <th scope="col">status</th>
+      <!-- <th scope="col">Upload Images</th> -->
     </tr>
   </thead>
   <logic:iterate id="viewStatusList" name="User" type="Beans.ViewStatus" property="viewStatusList">
@@ -73,7 +74,7 @@
   <td><bean:write name="viewStatusList" property="description"/></td>
   <td><bean:write  name="viewStatusList" property="NGO"/></td>
   <td><bean:write  name="viewStatusList" property="status"/></td>
- 
+<!--  <td> <input type="file" id="upload_images" multiple="true" accept="image/*"></td> -->
   </tr>
   
   

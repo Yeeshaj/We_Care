@@ -14,6 +14,7 @@ public class User extends ActionForm {
 	ArrayList<ViewStatus> viewStatusList;
 	String no_of_users="",no_of_org="",no_of_request_raised="",no_of_requests_solved="";
 	ArrayList<Organization> orgList;
+	ArrayList<ApproveList> approveList;
 	public String getCountryName() {
 		return countryName;
 	}
@@ -214,6 +215,14 @@ public class User extends ActionForm {
 
 	public void setMobile_no(String mobile_no) {
 		this.mobile_no = mobile_no;
+	}
+
+	public ArrayList<ApproveList> getApproveList() {
+		return approveList;
+	}
+
+	public void setApproveList(ArrayList<ApproveList> approveList) {
+		this.approveList = approveList;
 	}
 
 	

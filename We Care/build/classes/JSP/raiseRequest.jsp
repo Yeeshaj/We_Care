@@ -95,7 +95,7 @@
   </tr>
      <tr>   
   	<td> Upload Images   </td>
-  	<td><input type="file" id="upload_images" enctype="multipart/form-data"> </td>
+   	<td><input type="file" id="upload_images" multiple="true" accept="image/*"> </td>
   </tr>
   <tr>   
   	<td colspan='2'> <center><button type="submit" onclick='raiseRequest()'>Submit</input> </center>  </td>
