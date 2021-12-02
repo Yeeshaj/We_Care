@@ -2,6 +2,11 @@
  * 
 Author: Yeeshaj Aarshin Srivastava
  */
+function deleteRow()
+{
+	document.getElementById("myTable").deleteRow(1);
+	alert("Action conpleted Successfully")
+}
 function changeName()
 {
 	var usertype=$("#usertype");
@@ -54,7 +59,7 @@ function exitGroup(userId,orgId)
 }
 function logout(userId)
 {
-	document.myForm.action = "/We_Care/MainAction.do?subaction=logout&id="+userId;
+		document.myForm.action = "/We_Care/MainAction.do?subaction=logout&id="+userId;
 		document.myForm.method="POST";
 		document.myForm.submit();
 }
@@ -101,8 +106,7 @@ function  raiseRequest()
 	var area=$("#area").val();
 	var description=$("#request_description").val();
 	//var photo=$("#upload_images").val();
-	var fileinput = document.getElementById("upload_images");
- 	 var image = new SimpleImage(fileinput);
+	
 	/*$.ajax({
             type: "POST",
             url: "/We_Care//MainAction.do?subaction=raiseRequest&stateId="+stateId+"&cityId="+cityId+"&countryId="+countryId+"&ngo="+ngo+"&area="+area+"&description="+description,

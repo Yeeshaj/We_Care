@@ -95,6 +95,10 @@ public class MainAction  extends Action
 			forward=createUser(mapping, form, request, response);
 		else if(subaction.equals("acceptRequest"))
 			forward=acceptRequest(mapping, form, request, response);
+		else if(subaction.equals("acceptUser"))
+			forward=acceptUser(mapping, form, request, response);
+		else if(subaction.equals("assignUser"))
+			forward=assignUser(mapping, form, request, response);
 		if(forward!=null)
 
 			return forward;
@@ -136,7 +140,7 @@ public class MainAction  extends Action
 	if(status)
 	{
 		user.setMessage("Request Raised Successfully");
-		dashboard(mapping, form, request, response);
+		return dashboard(mapping, form, request, response);
 	}
 	else
 	{
@@ -509,4 +513,42 @@ public class MainAction  extends Action
 			}
 			return mapping.findForward("Constants.SUCCESS");
 			}
+	private ActionForward acceptUser(ActionMapping mapping, ActionForm form, HttpServletRequest request,  HttpServletResponse response) {
+		
+		 user=(User) form;
+		 
+		try
+		{
+			
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			
+		}
+		return mapping.findForward("acceptUser");
+		}
+	private ActionForward assignUser(ActionMapping mapping, ActionForm form, HttpServletRequest request,  HttpServletResponse response) {
+		
+		 user=(User) form;
+		 
+		try
+		{
+			
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			
+		}
+		return mapping.findForward("assignUser");
+		}
 }

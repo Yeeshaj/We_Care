@@ -33,7 +33,7 @@
           <a class="nav-link active" aria-current="page" href="/We_Care/MainAction.do?subaction=raiseRequest">Raise Request</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="approveRequest.jsp">Approve Request</a>
+          <a class="nav-link" href="/We_Care/MainAction.do?subaction=approveRequest">Approve Request</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/We_Care/MainAction.do?subaction=viewRequest">View Status</a>

@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Organization</title>
+<title>Accept User</title>
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="/We_Care/JS/Functionality.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
@@ -18,8 +18,8 @@
 <body>
  <form name="myForm" > 
 <%-- <bean:define id="userId" property="user_id" name="User"></bean:define> --%>
-<%long userId=(long)session.getAttribute("id"); 
-String userType=(String)session.getAttribute("userType");%>  
+<%-- <%long userId=(long)session.getAttribute("id"); 
+String userType=(String)session.getAttribute("userType");%>  --%> 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="/We_Care/MainAction.do?subaction=dashboard">We-Care</a>
@@ -29,41 +29,26 @@ String userType=(String)session.getAttribute("userType");%>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
       
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/We_Care/MainAction.do?subaction=raiseRequest">Raise Request</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="approveRequest.jsp">Approve Request</a>
-        </li>
-        <li class="nav-item">
+        
+       <li class="nav-item">
           <a class="nav-link" href="/We_Care/MainAction.do?subaction=viewRequest">View Status</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/We_Care/MainAction.do?subaction=orgList">Join Org</a>
-        </li>
-       <!--  <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li> -->
+        	  <a class="nav-link" href="/We_Care/MainAction.do?subaction=acceptUser">Accept User</a></li>
+        	   <li class="nav-item">
+        	  <a class="nav-link" href="/We_Care/JSP/assignUser.jsp">Assign User</a></li>
         <li class="nav-item">
         <!--   <a class="nav-link disabled">Disabled</a> -->
         </li>
       </ul>
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit" onclick="logout('<%=userId%>')">Log Out</button>
+        <button class="btn btn-outline-success" type="submit" onclick="logout(10)">Log Out</button>
       </form>
     </div>
   </div>
 </nav>
-<table class="table table-striped" style="margin-top: 110px;">
+<table id="myTable" class="table table-striped" style="margin-top: 110px;">
   <thead>
     <tr>
       <th scope="col">User ID</th>
@@ -72,33 +57,27 @@ String userType=(String)session.getAttribute("userType");%>
        
     </tr>
   </thead>
-  <logic:iterate id="orgList" name="User" type="Beans.Organization" property="orgList"> 
-  <tr>
-  
- <td><bean:write  name="orgList" property="org_id" />  </td>
-  <td><bean:write name="orgList" property="org_name"/></td>
-<td>
-  <bean name="orgList" property="status"/>
-<%if(orgList.getStatus().equals("absent"))
-	{%>
-<a onclick="joinGroup('<%=userId%>','<%=orgList.getOrg_id()%>')">
-<img src="/We_Care/Images/add.jpg"  alt="Join"  style="width: 30px;" >
-</a>
-<%} else
-	{%>
-<a onclick="exitGroup('<%=userId%>','<%=orgList.getOrg_id()%>')">
-<img src="/We_Care/Images/exit.png"  alt="Exit"  style="width: 30px;" >
-</a>	
-	<%} %>
-</td>
- 
-  </tr>
-  
-  
-   </logic:iterate> 
-
   <tbody>
-   
+   <tr>
+   <td>	9	</td>
+   <td>	Yeeshaj Aarshin Srivastava	</td>
+   <td>	<a onclick="deleteRow()">
+	<img src="/We_Care/Images/approve.png"  alt="Approve"  style="width: 30px;" > </a>
+	<a onclick="deleteRow()">
+<img src="/We_Care/Images/reject.jpg"  alt="Reject"  style="width: 30px;" >
+</a>	
+	 </td>
+   </tr>
+    <tr>
+   <td>	10</td>
+   <td>	Hatake Kakashi	</td>
+   <td>	<a onclick="acceptRequest()">
+	<img src="/We_Care/Images/approve.png"  alt="Approve"  style="width: 30px;" > </a>
+	<a onclick="acceptRequest()">
+<img src="/We_Care/Images/reject.jpg"  alt="Reject"  style="width: 30px;" >
+</a>	
+	 </td>
+   </tr>
   </tbody>
 </table>
 <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top" style="position: fixed;left: 0;bottom: 0;width: 100%;">

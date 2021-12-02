@@ -31,7 +31,7 @@ public class requestCM {
 			db=new DbManager();
 			con=db.createConnection();
 			StringBuffer str=new StringBuffer();
-			str.append("INSERT into TABLES.TRANSACTION values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			str.append("INSERT into TABLES.TRANSACTION values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			ps= con.prepareStatement(str.toString());
 			
 			 LocalDate date = LocalDate.now();
@@ -52,6 +52,7 @@ public class requestCM {
 			ps.setInt(++counter, Integer.parseInt(countryId));//ccountry bigint(10),
 			ps.setString(++counter, area);//area  varchar(100)
 			ps.setString(++counter, ngo);//ngo
+			ps.setLong(++counter, 0);//ngo
 			System.out.println("Raise request"+ps);
 			ps.execute();
 			
