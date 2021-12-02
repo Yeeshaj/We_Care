@@ -89,6 +89,12 @@ public class MainAction  extends Action
 			forward=joinOrg(mapping, form, request, response);
 		else if(subaction.equals("exitGroup"))
 			forward=exitGroup(mapping, form, request, response);
+		else if(subaction.equals("signUp"))
+			forward=signUp(mapping, form, request, response);
+		else if(subaction.equals("createUser"))
+			forward=createUser(mapping, form, request, response);
+		else if(subaction.equals("acceptRequest"))
+			forward=acceptRequest(mapping, form, request, response);
 		if(forward!=null)
 
 			return forward;
@@ -238,6 +244,7 @@ public class MainAction  extends Action
 			requestCM rcm=new requestCM();
 			data=rcm.retrieveViewStatusList();
 			user.setViewStatusList(data);
+			
 		}
 		catch(Exception e)
 		{
@@ -259,12 +266,14 @@ public class MainAction  extends Action
 			String id=request.getParameter("id");
 			String password=request.getParameter("password");
 			requestCM rcm=new requestCM();
-			userid=rcm.login(id, password);
-			if(userid!=0)
+			ArrayList<String> data=rcm.login(id, password);
+			if(data!=null)
 			{
-				user.setUser_id(String.valueOf(userid));				
+				user.setUser_id(String.valueOf(data.get(0)));
+				user.setUser_type(data.get(1));
 				session = request.getSession();
-				session.setAttribute("id", userid);
+				session.setAttribute("id", Long.parseLong(data.get(0)));
+				session.setAttribute("userType", data.get(1));
 				
 			}
 			
@@ -311,6 +320,30 @@ public class MainAction  extends Action
 			
 		}
 		return mapping.findForward(Constants.SUCCESS);
+		}
+	
+	private ActionForward acceptRequest(ActionMapping mapping, ActionForm form, HttpServletRequest request,  HttpServletResponse response) {
+		
+		 user=(User) form;
+		 
+		try
+		{
+			String userId=request.getParameter("id");
+			String requestId=request.getParameter("reqeustNo");
+			String action=request.getParameter("action");
+			requestCM rcm = new requestCM();
+			rcm.requestAction(requestId, action);
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			
+		}
+		return mapping.findForward("approveRequest");
 		}
 	
 	private ActionForward approveRequestList(ActionMapping mapping, ActionForm form, HttpServletRequest request,  HttpServletResponse response) {
@@ -416,5 +449,64 @@ public class MainAction  extends Action
 				
 			}
 			return orgList(mapping, form, request, response);
+			}
+	private ActionForward signUp(ActionMapping mapping, ActionForm form, HttpServletRequest request,  HttpServletResponse response) {
+		try
+			{	
+			 user=(User) form;
+			requestCM rcm=new requestCM();
+			ArrayList<Country> countryList = new ArrayList<>();
+			HashMap<Integer,String> countryLists=rcm.retrieveCountry();
+			
+			if(countryLists!=null)
+			{
+				for (Entry<Integer, String> mapElement : countryLists.entrySet()) {
+		            int key = mapElement.getKey();
+		            String value=mapElement.getValue();
+		            countryList.add(new Country(String.valueOf(key), value));
+		       }
+			}
+			user.setCountryList(countryList);
+			request.setAttribute("countryList", countryList);
+				
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			finally
+			{
+				
+			}
+			return mapping.findForward("signUp");
+			}
+	
+	private ActionForward createUser(ActionMapping mapping, ActionForm form, HttpServletRequest request,  HttpServletResponse response) {
+		try
+			{	
+			 user=(User) form;
+			requestCM rcm=new requestCM();
+			String usertype=request.getParameter("usertype");
+			String name=request.getParameter("name");
+			String email=request.getParameter("email");
+			String country=request.getParameter("country");
+			String state=request.getParameter("state");
+			String city=request.getParameter("city");
+			String password=request.getParameter("password");
+			ArrayList<Country> countryList = new ArrayList<>();
+			HashMap<Integer,String> countryLists=rcm.retrieveCountry();
+			rcm.creatUser(usertype, name, email, country, state, city, password);
+		
+				
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			finally
+			{
+				
+			}
+			return mapping.findForward("Constants.SUCCESS");
 			}
 }

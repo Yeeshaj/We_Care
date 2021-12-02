@@ -21,6 +21,7 @@
 	   		<forward name="viewStatus" path="/JSP/viewStatus.jsp" redirect="true"/> 
 	   		<forward name="orgList" path="/JSP/organization.jsp" redirect="true"/> 
 	   		<forward name="logout" path="/HTML/Login.html" redirect="true"/> 
+	   		<forward name="signUp" path="/JSP/signUp.jsp" redirect="true"/> 
 	   </action>
 		
 		

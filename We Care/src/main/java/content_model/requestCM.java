@@ -314,9 +314,9 @@ public class requestCM {
 		}
 		return data;
 	}
-	public long login(String id,String password) throws SQLException
+	public ArrayList<String> login(String id,String password) throws SQLException
 	{
-	long status=0;
+		ArrayList<String> status=new ArrayList<String>();
 		
 		java.sql.PreparedStatement ps=null;
 		java.sql.ResultSet rs=null;
@@ -332,8 +332,8 @@ public class requestCM {
 			
 			while(rs.next())
 			{
-			status=rs.getLong("id");
-			
+			status.add(String.valueOf(rs.getString("id")));
+			status.add(rs.getString("user_type"));
 			}
 			
 	}
@@ -420,6 +420,45 @@ public class requestCM {
 		}
 		return data;
 	}
+	public HashMap<Integer,String> getUserForOrg() throws SQLException {
+		HashMap<Integer,String> data=new HashMap<Integer,String>();
+		
+		java.sql.PreparedStatement ps=null;
+		java.sql.ResultSet rs=null;
+		try
+		{
+			db=new DbManager();
+			con=db.createConnection();
+			//NO of users
+			StringBuffer str=new StringBuffer();
+			str.append("SELECT * from tables.user_details where org_id is null");
+			ps= con.prepareStatement(str.toString());
+			rs=ps.executeQuery();
+			while(rs.next())
+			{
+			data.put(Integer.parseInt(rs.getString("id")),rs.getString("name"));
+			}
+			
+			
+			
+			
+	}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			if(ps!=null)
+				ps.close();
+			if(rs!=null)
+				rs.close();
+			if(con!=null)
+				db.closeConnection();
+		}
+		return data;	
+	}
+	
 	public ArrayList<ApproveList> approveRequestList(String userId) throws SQLException
 	{
 		 ArrayList<ApproveList> data=new  ArrayList<ApproveList>();
@@ -432,7 +471,7 @@ public class requestCM {
 			con=db.createConnection();
 			//NO of users
 			StringBuffer str=new StringBuffer();
-			str.append("SELECT * FROM TABLES.TRANSACTION t JOIN TABLES.user_details u ON t.raised_by=u.id JOIN TABLES.ORGANIZATION o on t.ngo=o.org_id where  alloted_to="+userId);
+			str.append("SELECT * FROM TABLES.TRANSACTION t JOIN TABLES.user_details u ON t.raised_by=u.id JOIN TABLES.ORGANIZATION o on t.ngo=o.org_id where status='Open' and alloted_to="+userId);
 			ps= con.prepareStatement(str.toString());
 			rs=ps.executeQuery();
 			while(rs.next())
@@ -533,6 +572,7 @@ public class requestCM {
 			ps.setLong(1, getMaxValue("org_user_table")+1);
 			ps.setLong(2, Long.parseLong(userId));
 			ps.setLong(3,Long.parseLong(orgId));
+			ps.setString(4,"Pending");
 			ps.execute();
 			
 			
@@ -632,5 +672,89 @@ public class requestCM {
 				db.closeConnection();
 		}
 		return data;
+	}
+	public boolean creatUser(String usertype,String name,String email,String country,String state,String city,String password )
+	{
+		java.sql.PreparedStatement ps=null;
+		java.sql.ResultSet rs=null;
+		try
+		{
+			db=new DbManager();
+			int counter=0;
+			con=db.createConnection();
+			//NO of users
+			StringBuffer str=new StringBuffer();
+			//id, name, address, user_type, rowstate, city, country, state, org_id, mobile_no, user_photo, area_name, created_at, email, password
+			str.append("INSERT INTO TABLES.USER_DETAILS values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			ps=con.prepareStatement(str.toString());
+			ps.setLong(++counter,getMaxValue("USER_DETAILS")+1);
+			ps.setString(++counter, name);
+			ps.setString(++counter, null);
+			ps.setString(++counter, usertype);
+			ps.setLong(++counter, Long.parseLong(city));
+			ps.setLong(++counter, Long.parseLong(country));
+			ps.setLong(++counter, Long.parseLong(state));
+			ps.setString(++counter, null);
+			ps.setString(++counter, null);
+			ps.setString(++counter, null);
+			ps.setString(++counter, null);
+			ps.setString(++counter, String.valueOf( LocalDate.now()));
+			ps.setString(++counter, email);
+			ps.setString(++counter, password);
+			
+			ps.execute();
+			
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return true;
+	}
+	public boolean requestAction (String requestId,String action) throws SQLException
+	{
+		
+		ArrayList<Organization> data=new ArrayList<Organization>();
+		java.sql.PreparedStatement ps=null;
+		java.sql.ResultSet rs=null;
+		
+		try
+		{
+		
+			db=new DbManager();
+			con=db.createConnection();
+			//NO of users
+			StringBuffer str=new StringBuffer();
+			str.append("UPDATE  TABLES.TRANSACTION  set status=? where transaction_id=? ");
+			
+			ps= con.prepareStatement(str.toString());
+			if(action.equals("approve"))
+			ps.setString(1, "Approved");
+			else
+				ps.setString(1, "Rejected");
+			ps.setString(2, requestId);
+			
+			ps.execute();
+			
+			
+			
+			
+			
+	}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			if(ps!=null)
+				ps.close();
+			if(rs!=null)
+				rs.close();
+			if(con!=null)
+				db.closeConnection();
+		}
+		return true;
 	}
 }

@@ -11,10 +11,14 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Approve Request</title>
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="/We_Care/JS/Functionality.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 </head>
 <body>
-<%long userId=(long)session.getAttribute("id"); %>  
+<%long userId=(long)session.getAttribute("id"); 
+String userType=(String)session.getAttribute("userType");%>
+<form name="myForm" >  
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="/We_Care/MainAction.do?subaction=dashboard">We-Care</a>
@@ -75,16 +79,16 @@
   <td><bean:write  name="approveList" property="sentByOrg"/></td>
   <td><bean:write  name="approveList" property="raiseBy"/></td> 
  <td>
-  
-
-<a onclick="rejectRequest('<%=userId%>')">
+ 
+<% String requestNo=approveList.getRequestNo(); %>
+<a onclick="acceptRequest('<%=userId%>','<%=requestNo%>','approve')">
 <img src="/We_Care/Images/approve.png"  alt="Approve"  style="width: 30px;" >
 </a>
 
-<a onclick="acceptRequest('<%=userId%>')">
+<a onclick="acceptRequest('<%=userId%>','<%=requestNo%>','reject')">
 <img src="/We_Care/Images/reject.jpg"  alt="Reject"  style="width: 30px;" >
 </a>	
-	<
+	
 </td>
   </tr>
   
@@ -95,6 +99,25 @@
    
   </tbody>
 </table>
+<div class="modal fade hide" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Modal header</h3>
+  </div>
+  <div class="modal-body">
+      <select>
+          <option>test</option>
+          <option>test</option>
+          <option>test</option>
+          <option>test</option>
+          <option>test</option>
+      </select>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button class="btn btn-primary">Save changes</button>
+  </div>
+</div>
 <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top" style="position: fixed;left: 0;bottom: 0;width: 100%;">
     <div class="col-md-4 d-flex align-items-center">
       <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
@@ -109,5 +132,6 @@
       <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
     </ul>
   </footer>
+  </form>
 </body>
 </html>

@@ -2,6 +2,43 @@
  * 
 Author: Yeeshaj Aarshin Srivastava
  */
+function changeName()
+{
+	var usertype=$("#usertype");
+	if(usertype=='user')
+	{
+		$("#tempName").val("Your Name");
+		
+	}
+	else
+	{
+		$("#tempName").val("Org Name");
+	}
+}
+function singUp()
+{
+	var usertype=$("#usertype").val();
+	var name=$("#name").val();
+	var email=$("#emial").val();
+	var country=$("#country").val();
+	var state=$("#state").val();
+	var city=$("#city").val();
+	var password=$("#password").val();
+		document.myForm.action = "/We_Care/MainAction.do?subaction=createUser&id="+userId+"&name="+name+"&email="+email+"&country="+country+"&state="+state+"&city="+city+"&password="+password;
+		document.myForm.method="POST";
+		document.myForm.submit();
+}
+function acceptRequest(userId,requestNo,act)
+{
+	
+		document.myForm.action = "/We_Care/MainAction.do?subaction=acceptRequest&id="+userId+"&reqeustNo="+requestNo+"&action="+act;
+		document.myForm.method="POST";
+		document.myForm.submit();
+}
+function rejectRequest(userId,requestNo)
+{
+	
+}
 function joinGroup(userId,orgId)
 {
 	document.myForm.action = "/We_Care/MainAction.do?subaction=joinOrg&id="+userId+"&orgId="+orgId;

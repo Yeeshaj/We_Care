@@ -113,31 +113,49 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 </head>
 <body>
-<%long userId=(long)session.getAttribute("id"); %>  
+<%long userId=(long)session.getAttribute("id"); 
+String userType=(String)session.getAttribute("userType");
+%>  
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="/We_Care/JSP/Dashboard.jsp">We-Care</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+     
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
       
        <!--  <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="raiseRequest.jsp">Raise Request</a>
         </li> -->
+        <%if (userType.equals("user"))
+        	 {%>
          <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/We_Care/MainAction.do?subaction=raiseRequest">Raise Request</a>
         </li>
+         
         <li class="nav-item">
           <a class="nav-link" href="/We_Care/MainAction.do?subaction=approveRequest">Approve Request</a>
         </li>
+        <%} %>
         <li class="nav-item">
           <a class="nav-link" href="/We_Care/MainAction.do?subaction=viewRequest">View Status</a>
         </li>
-         <li class="nav-item">
-          <a class="nav-link" href="/We_Care/MainAction.do?subaction=orgList">Join Org</a>
-        </li>
+        
+        
+         <%if (userType.equals("user"))
+        	 {%>
+        	  <li class="nav-item">
+          <a class="nav-link" href="/We_Care/MainAction.do?subaction=orgList">Join Org</a></li>
+          <%} else
+        	  {%>
+        	   <li class="nav-item">
+        	  <a class="nav-link" href="/We_Care/MainAction.do?subaction=acceptUser">Accept User</a></li>
+        	   <li class="nav-item">
+        	  <a class="nav-link" href="/We_Care/MainAction.do?subaction=assignUser">Assign User</a></li>
+        	  <%} %>
+        
        <!--  <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Dropdown
